@@ -28,15 +28,15 @@ Post.init(
     },
     /* createdBy username */
     createdBy: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       references: {
         model: 'user',
-        key: id,
+        key: 'id',
       },
     },
     /* createdAt time */
     postedAt: {
-      type: DataTypes.Date,
+      type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
@@ -44,7 +44,8 @@ Post.init(
   /* Options */
   {
     sequelize,
-    modelName: 'post'
+    modelName: 'post',
+    freezeTableName: true,
   }
 );
 
