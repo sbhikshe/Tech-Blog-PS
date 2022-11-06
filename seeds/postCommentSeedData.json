@@ -1,0 +1,27 @@
+[
+  {
+    "contents" : "And remember to keep it to less than a 1000 words!",
+    "parentPost" : "1",
+    "createdBy" : "1",
+    "postedAt" : "11/06/2022"
+  },
+  {
+    "contents" :"Oh, that's not enough!",
+    "parentPost" : "1",
+    "createdBy" : "2",
+    "postedAt" : "11/06/2022"
+  },
+  {
+    "contents" :"And again!",
+    "parentPost" : "2",
+    "createdBy" : "1",
+    "postedAt" : "11/06/2022"
+  },
+  { 
+    "contents" :"And again and again!",
+    "parentPost" : "2",
+    "createdBy" : "2",
+    "postedAt" : "11/06/2022"
+
+  }
+]
