@@ -35,11 +35,13 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/signup', (req, res) => {
+router.get('/signup', async (req, res) => {
+  console.log("Received get req to localhost:3001/signup")
   res.render('signup');
 });
 
-router.get('/login', (req, res) => { 
+router.get('/login', async (req, res) => { 
+  console.log("Received get req to localhost:3001/login")
   res.render('login');
 });
 

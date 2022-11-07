@@ -3,6 +3,11 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const path = require('path');
 
+/* Middleware */
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+
 /* Routes */
 const routes = require('./controllers');
 
@@ -17,11 +22,6 @@ app.set('view engine', 'handlebars');
 
 /* For routes */
 app.use(routes);
-
-/* Middleware */
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
 
 /* Sync models to the database, then start the server listening */
 sequelize.sync()
