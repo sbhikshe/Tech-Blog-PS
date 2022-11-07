@@ -18,6 +18,8 @@ const handleLoginForm = async (event) => {
     });
   if(response.ok) {
     console.log("Logged in");   
+  } else {
+    console.log("user not logged in");
   }
 }
 loginFormEl.addEventListener('submit', handleLoginForm);
