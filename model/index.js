@@ -2,13 +2,13 @@ const User = require('./User');
 const Post = require('./Post');
 const PostComment = require('./PostComment');
 
+Post.belongsTo(User, {
+  foreignKey: 'createdBy',
+});
+
 User.hasMany(Post, {
   foreignKey: 'createdBy',
   onDelete: 'CASCADE',
-});
-
-Post.belongsTo(User, {
-  foreignKey: 'createdBy',
 });
 
 Post.hasMany(PostComment, {

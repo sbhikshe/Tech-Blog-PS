@@ -49,6 +49,7 @@ PostComment.init(
     sequelize,
     modelName: 'postComment',
     freezeTableName: true,
+    timestamps: false,
   }
 );
 
