@@ -12,18 +12,24 @@
     </p>
     <p>
       Posted by: {{user.username}}
-    </h6>
+    </p>
     <p>
       At: {{post.postedAt}}
-    </h6>
+    </p>
+    <div>
+    <button onClick=>Comment</button>
     <button onclick="/post/{{post.id}}">Update</button>
     <button onClick=>Delete</button>
+    </div>
   </li>
   {{/each}}
   </ul>
+  <!--
   <div>
     <button id="addPost">Create a new post</button>
   </div>
+  -->
+  {{>createPost}}
   {{/if}}
 
 
