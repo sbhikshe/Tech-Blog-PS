@@ -38,6 +38,9 @@ router.get('/', async (req, res) => {
 
 router.get('/dashboard', async (req, res) => {
   console.log("Logged in, showing dashboard");
+  if(!req.session.loggedIn) {
+    res.render('login');
+  } else {
   /* find the user that's logged in */
   /* req.session.userId */
   /* findAll posts by that user */
@@ -61,6 +64,7 @@ router.get('/dashboard', async (req, res) => {
     /* if no posts, show something appropriate */
     res.render('dashboard',{posts: null, loggedIn: req.session.loggedIn})
   }
+  }
 });
 
 router.get('/signup', async (req, res) => {
@@ -78,6 +82,18 @@ router.get('/login', async (req, res) => {
     res.redirect('/dashboard');
   } else {
     res.render('login');
+  }
+});
+
+router.get('/logout', (req, res) => {
+  console.log("Received get req to localhost:3001/logout")
+  if(req.session.loggedIn){
+    req.session.destroy(() => {
+      res.render('logout');
+    });
+  } else {
+    console.log("received logout when no one is logged in");
+    // do nothing? Stay on the same page?
   }
 });
 
