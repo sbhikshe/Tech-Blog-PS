@@ -14,6 +14,7 @@ router.get('/', async (req, res) => {
         attributes: [
           'username'
         ]}, 
+        // TBD: possibly exclude this ? Show only the posts?
         {model: PostComment,
         attributes: [
           'contents',
@@ -35,14 +36,49 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/dashboard', async (req, res) => {
+  console.log("Logged in, showing dashboard");
+  /* find the user that's logged in */
+  /* req.session.userId */
+  /* findAll posts by that user */
+  console.log("User logged in now = " + req.session.userId);
+  const postData = await User.findByPk(req.session.userId, {
+    include: [
+      { model: Post }, 
+      { 
+        model: PostComment,
+        attributes: [
+        'contents',
+        ]
+      }],
+  });
+  console.log(postData);
+  if(postData) {
+    const data = postData.get({plain: true});
+    console.log("data = " + data);
+    res.render('dashboard', { posts: data.posts, loggedIn: req.session.loggedIn });
+  } else {
+    /* if no posts, show something appropriate */
+    res.render('dashboard',{posts: null, loggedIn: req.session.loggedIn})
+  }
+});
+
 router.get('/signup', async (req, res) => {
   console.log("Received get req to localhost:3001/signup")
-  res.render('signup');
+  if(req.session.loggedIn) {
+    res.redirect('/dashboard');
+  } else {  
+    res.render('signup');
+  }
 });
 
 router.get('/login', async (req, res) => { 
   console.log("Received get req to localhost:3001/login")
-  res.render('login');
+  if(req.session.loggedIn) {
+    res.redirect('/dashboard');
+  } else {
+    res.render('login');
+  }
 });
 
 module.exports = router;

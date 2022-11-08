@@ -1,0 +1,30 @@
+<section class="container-fluid">
+  <ul>
+  {{#if posts }}
+  {{#each posts as |post| }}
+  <li class="card">
+    <h5>
+      {{post.title}}
+    </h5>
+    <p>
+      {{post.contents}}
+    </p>
+    <p>
+      Posted by: {{user.username}}
+    </h6>
+    <p>
+      At: {{post.postedAt}}
+    </h6>
+  </li>
+  <button>Update</button>
+  <button>Delete</button>
+  {{/each}}
+  {{/if}}
+  {{#unless posts}}
+  <p>No posts to show for this user</p>
+  {{/unless}}
+  {{#if loggedin}}
+  <!-- change the login button to logout -->
+  {{/if}}
+  </ul>
+</section>

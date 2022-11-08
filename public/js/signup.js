@@ -20,14 +20,19 @@ const handleSubmit = async (event) => {
       body: JSON.stringify({username, password })
     });
     if(response.ok) {
-      response = await fetch('/login', {
-        method: 'GET',
-      });
+      //response = await fetch('/login', {
+      //  method: 'GET',
+      //});
+      // If signed up, logged in too, go to dashboard
+      document.location.replace('/dashboard');
+      console.log("Signed up");
     } else {
       console.log(response);
+      alert(response.status);
     }
   } catch (err) {
     console.log(err);
+    alert(err);
   }
 }
 

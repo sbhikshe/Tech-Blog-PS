@@ -17,9 +17,12 @@ const handleLoginForm = async (event) => {
     body: JSON.stringify({ username, password })
     });
   if(response.ok) {
-    console.log("Logged in");   
+    console.log("Logged in");
+    document.location.replace('/dashboard'); 
   } else {
     console.log("user not logged in");
+    alert(response.status);
+    //document.location.replace('/');
   }
 }
 loginFormEl.addEventListener('submit', handleLoginForm);

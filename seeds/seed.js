@@ -1,5 +1,6 @@
 const sequelize = require('../config/connection');
 const { User, Post, PostComment } = require('../model');
+const bcrypt = require('bcrypt');
 
 const userSeedData = require('./userSeedData.json');
 const postSeedData = require('./postSeedData.json');
@@ -8,7 +9,12 @@ const commentSeedData = require('./postCommentSeedData.json');
 const seed = async () => {
   await sequelize.sync({ force: true });
 
-  const userData = await User.bulkCreate(userSeedData);
+  let newUserSeedData = [];
+  for(const user of userSeedData) {
+    let hashedPassword = await bcrypt.hash(user.password, 10);
+    newUserSeedData.push({username: user.username, password: hashedPassword });
+  }
+  const userData = await User.bulkCreate(newUserSeedData);
   if (userData) {
     console.log("User seeded" + userData);
   } else {
