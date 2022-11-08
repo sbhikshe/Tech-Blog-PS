@@ -97,5 +97,16 @@ router.get('/logout', (req, res) => {
   }
 });
 
+router.get('/post', async (req, res) => { 
+  console.log("Received get req to localhost:3001/post")
+  if(req.session.loggedIn) {
+    console.log("Showing createPost box");
+    res.render('./createPost', {loggedIn: req.session.loggedIn});
+  } else {
+    console.log("not logged in, can't create post")
+    res.render('login');
+  }
+});
+
 module.exports = router;
 

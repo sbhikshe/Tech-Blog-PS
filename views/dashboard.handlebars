@@ -1,6 +1,7 @@
 <section class="container-fluid">
-  <ul>
+ 
   {{#if posts }}
+   <ul>
   {{#each posts as |post| }}
   <li class="card">
     <h5>
@@ -15,16 +16,21 @@
     <p>
       At: {{post.postedAt}}
     </h6>
+    <button onclick="/post/{{post.id}}">Update</button>
+    <button onClick=>Delete</button>
   </li>
-  <button>Update</button>
-  <button>Delete</button>
   {{/each}}
+  </ul>
+  <div>
+    <button id="addPost">Create a new post</button>
+  </div>
   {{/if}}
+
+
   {{#unless posts}}
   <p>No posts to show for this user</p>
+  {{>createPost}}
   {{/unless}}
-  {{#if loggedin}}
-  <!-- change the login button to logout -->
-  {{/if}}
-  </ul>
+
 </section>
+<script src="/js/dashboard.js"></script>
