@@ -26,7 +26,6 @@ router.post('/', async (req, res) => {
       /* Send response back to client */
       const data = userData.get({plain: true});
       res.status(200).json({"id": data.id, "username": data.username});
-      //res.status(200).json(userData); TBD: do this or the line above, will the password be sent?
       });
     } else {
       res.status(400).json("User not created");

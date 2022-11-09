@@ -22,11 +22,9 @@ router.get('/', async (req, res) => {
         ]}
       ]
     });
-    console.log("Postdata = " + postData);
+    //console.log("Postdata = " + postData);
     if (postData) {
       const posts = postData.map((post) => post.get({plain: true}));
-      //const postDataToRender = posts.map((post) => {});
-      //res.status(200).json(posts);
       res.render('homepage', { posts } );
     } else {
       res.status(400).json("Error reading posts from Db");
@@ -55,13 +53,13 @@ router.get('/dashboard', async (req, res) => {
         ]
       }],
   });
-  console.log(postData);
+  //console.log(postData);
   if(postData) {
     const data = postData.get({plain: true});
     console.log("data = " + data);
     res.render('dashboard', { posts: data.posts, loggedIn: req.session.loggedIn });
   } else {
-    /* if no posts, show something appropriate */
+    /* if no posts, show "No posts for this user" */
     res.render('dashboard',{posts: null, loggedIn: req.session.loggedIn})
   }
   }
@@ -97,6 +95,7 @@ router.get('/logout', (req, res) => {
   }
 });
 
+/*
 router.get('/post', async (req, res) => { 
   console.log("Received get req to localhost:3001/post")
   if(req.session.loggedIn) {
@@ -107,6 +106,7 @@ router.get('/post', async (req, res) => {
     res.render('login');
   }
 });
+*/
 
 module.exports = router;
 
