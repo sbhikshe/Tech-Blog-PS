@@ -81,7 +81,7 @@ router.put('/:id', async (req, res) => {
       {
         title: req.body.title,
         contents: req.body.contents,
-        createdBy: req.session.username,
+        createdBy: req.body.createdBy,
         postedAt: Date.now()
       },
       {

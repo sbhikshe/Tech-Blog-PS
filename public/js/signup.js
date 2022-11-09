@@ -10,7 +10,7 @@ const handleSubmit = async (event) => {
   const password = document.querySelector("#inputPassword").value;
   console.log(email + " " + username + " " + password);
 
-  /* send a fetch request to post to /signup */
+  /* send a fetch request to post to /api/users */
   try {
     let response = await fetch('/api/users', {
       method: 'POST',
@@ -20,9 +20,6 @@ const handleSubmit = async (event) => {
       body: JSON.stringify({username, password })
     });
     if(response.ok) {
-      //response = await fetch('/login', {
-      //  method: 'GET',
-      //});
       // If signed up, logged in too, go to dashboard
       document.location.replace('/dashboard');
       console.log("Signed up");

@@ -39,13 +39,13 @@ const postItemButtonHandler = async(event) => {
       console.log("Comment button!");
 
     } else if (actionType == "update"){
-      console.log("Update button!");
+      console.log("Update button!");  
+      document.location.replace(`/updatePost/${postId}`);
 
     } else if (actionType == "delete") {
-      console.log("Delete button!");
 
+      console.log("Delete button!");
       console.log("sending fetch with delete request"); 
-      
       const response = await fetch(`/api/posts/${postId}`, { method: 'DELETE' });
       
       if(response.ok) {

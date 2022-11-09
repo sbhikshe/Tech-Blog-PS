@@ -54,10 +54,6 @@ router.post('/login', async (req, res) => {
           req.session.userId = userData.id;
           req.session.username = req.body.username;
           req.session.loggedIn = true;
-
-          console.log("req.session.userId = " + req.session.userId);
-          console.log("req.session.username = " + req.session.username);
-          console.log("req.session.loggedIn = " + req.session.loggedIn);
   
           const data = userData.get({plain: true});
           res.status(200).json({"id": data.id, "username": data.username});
@@ -74,11 +70,6 @@ router.post('/login', async (req, res) => {
   } catch (err) {
     res.status(400).json(err);
   } 
-});
-
-/* when the user logs out */
-router.post('/logout', (req, res) => {
-
 });
 
 module.exports = router;

@@ -41,7 +41,7 @@ router.get('/dashboard', async (req, res) => {
   } else {
   /* find the user that's logged in */
   /* req.session.userId */
-  /* findAll posts by that user */
+  /* find all posts by that user */
   console.log("User logged in now = " + req.session.userId);
   const postData = await User.findByPk(req.session.userId, {
     include: [
@@ -91,22 +91,22 @@ router.get('/logout', (req, res) => {
     });
   } else {
     console.log("received logout when no one is logged in");
-    // do nothing? Stay on the same page?
   }
 });
 
-/*
-router.get('/post', async (req, res) => { 
-  console.log("Received get req to localhost:3001/post")
-  if(req.session.loggedIn) {
-    console.log("Showing createPost box");
-    res.render('./createPost', {loggedIn: req.session.loggedIn});
-  } else {
-    console.log("not logged in, can't create post")
-    res.render('login');
+router.get('/updatePost/:id', async (req, res) => {
+  console.log("received req to update post: " + req.params.id);
+  try {
+    const postData = await Post.findByPk(req.params.id);
+    if(postData) {
+      const post = postData.get({plain: true});
+      res.render('updatePost', { post });
+    } else {
+      res.status(400).json("Didn't find post");
+    }
+  } catch(err) {
+    res.status(500).json(err);
   }
 });
-*/
 
 module.exports = router;
-

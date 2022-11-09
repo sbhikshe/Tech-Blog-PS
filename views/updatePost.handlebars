@@ -1,0 +1,14 @@
+<section class="container-fluid">
+
+<div class="form-group">
+  <h6> Update post:</h6>
+
+  <textarea class="form-control" id="postTitleArea" placeholder="{{post.title}}"></textarea>
+
+  <textarea class="form-control" id="postTextArea" rows="5" placeholder="{{post.contents}}"></textarea>
+
+  <button class="btn btn-primary" id="updatePost" data-id="{{post.id}}" data-createdBy="{{post.createdBy}}">Save updates</button>
+
+</div>
+</section>
+<script src="/js/savePost.js"></script>
