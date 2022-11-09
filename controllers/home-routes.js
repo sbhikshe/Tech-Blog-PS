@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
     });
     if (postData) {
       const posts = postData.map((post) => post.get({plain: true}));
-      res.render('homepage', { posts } );
+      res.render('homepage', { posts: posts, loggedIn: req.session.loggedIn } );
     } else {
       res.status(400).json("Error reading posts from Db");
     }
