@@ -14,15 +14,12 @@ router.get('/', async (req, res) => {
         attributes: [
           'username'
         ]}, 
-        // TBD: possibly exclude this ? Show only the posts?
         {model: PostComment,
         attributes: [
           'contents',
-          // created by - some other user !!
         ]}
       ]
     });
-    //console.log("Postdata = " + postData);
     if (postData) {
       const posts = postData.map((post) => post.get({plain: true}));
       res.render('homepage', { posts } );
@@ -37,7 +34,7 @@ router.get('/', async (req, res) => {
 router.get('/dashboard', async (req, res) => {
   console.log("Logged in, showing dashboard");
   if(!req.session.loggedIn) {
-    res.render('login');
+    res.render('signup');
   } else {
   /* find the user that's logged in */
   /* req.session.userId */
@@ -53,7 +50,6 @@ router.get('/dashboard', async (req, res) => {
         ]
       }],
   });
-  //console.log(postData);
   if(postData) {
     const data = postData.get({plain: true});
     console.log("data = " + data);

@@ -7,8 +7,6 @@ router.post('/', async (req, res) => {
   console.log("received post req to /api/users");
   try {
 
-    console.log("Request: " + req.body.username + " " + req.body.password);
-
     const passwordHash = await bcrypt.hash(req.body.password, 10);
     const userData = await User.create({
       username: req.body.username,
@@ -25,7 +23,7 @@ router.post('/', async (req, res) => {
 
       /* Send response back to client */
       const data = userData.get({plain: true});
-      res.status(200).json({"id": data.id, "username": data.username});
+      res.status(200).json(data);
       });
     } else {
       res.status(400).json("User not created");
