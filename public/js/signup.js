@@ -5,8 +5,7 @@ const handleSubmit = async (event) => {
 
   console.log("Getting form input fields");
 
-  /* get user's email, username and password from the input fields */
-  const email = document.querySelector("#inputEmail").value;
+  /* get user's username and password from the input fields */
   const username = document.querySelector("#inputUsername").value;
   const password = document.querySelector("#inputPassword").value;
 
